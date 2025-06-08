@@ -32,7 +32,9 @@ numbers = [1, 19, 123, 456, -25]
 for i, number in enumerate(numbers, 1):
     print(f"Number {i} is {number:5}")
 
+# Prints the cost of the guitar rounded up to the nearest dollar
 print(f"{year} {name} for about ${cost:,.0f}!")
 
+# Calculates 2 to the power of 0 to 10 then prints
 for i in range(11):
-    print(f"2 ^{i:2} is {2 ** i:4}")
+    print(f"2 ^{i:2} is {2 ** i:4}") # Uses f-string formatting to match desired output
