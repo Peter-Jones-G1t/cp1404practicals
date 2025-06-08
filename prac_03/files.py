@@ -21,4 +21,9 @@ with open("numbers.txt", 'r') as numbers_file:
     total = int(numbers_file.readline()) + int(numbers_file.readline())
     print(total)
 
-
+# program 4.
+with open("numbers.txt", 'r') as numbers_file:
+    total = 0
+    for line in numbers_file:
+        total += int(line)
+    print(total)
