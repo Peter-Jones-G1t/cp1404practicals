@@ -50,7 +50,8 @@ def is_valid_password(password):
     print(f"Number of upper: {number_of_upper}")
     print(f"Number of lower: {number_of_lower}")
 
-    # TODO: if any of the 'normal' counts are zero, return False
+    if number_of_lower == 0 or number_of_upper == 0 or number_of_digit == 0:
+        return False
 
     # TODO: if special characters are required, then check the count of those
     # and return False if it's zero
