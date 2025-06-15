@@ -8,12 +8,12 @@ FILENAME = "subject_data.txt"
 
 def main():
     data = load_data()
-    print(data)
+    display_subjects(data)
 
 
 def load_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
-    records = []
+    subject_records = []
 
     input_file = open(FILENAME)
     for line in input_file:
@@ -25,10 +25,19 @@ def load_data():
         parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
         print(parts)  # See if that worked
         print("----------")
-        records.append(parts)
+        subject_records.append(parts)
 
     input_file.close()
-    return records
+    return subject_records
+
+
+def display_subjects(subject_records):
+    """Display from nested list each subject's code, lecturer, and student count in a formatted sentence"""
+    for record in subject_records:
+        subject_code = record[0]
+        lecturer = record[1]
+        student_count = record[2]
+        print(f"{subject_code} is taught by {lecturer} and has {student_count} students")
 
 
 main()
