@@ -13,6 +13,8 @@ def main():
 
 def load_data():
     """Read data from file formatted like: subject,lecturer,number of students."""
+    records = []
+
     input_file = open(FILENAME)
     for line in input_file:
         print(line)  # See what a line looks like
@@ -23,7 +25,10 @@ def load_data():
         parts[2] = int(parts[2])  # Make the number an integer (ignore PyCharm's warning)
         print(parts)  # See if that worked
         print("----------")
+        records.append(parts)
+
     input_file.close()
+    return records
 
 
 main()
