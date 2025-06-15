@@ -4,8 +4,11 @@ CP1404 Program to display information from a list of numbers
 
 
 def main():
-    """Display list information"""
+    """Display list information and check for user access"""
     numbers = []
+    usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface',
+                 'BaseStdIn', 'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer',
+                 'bob']
 
     for i in range(5):
         number = int(input("Number: "))
@@ -16,6 +19,12 @@ def main():
     print(f"The smallest number is {min(numbers)}")
     print(f"The largest number is {max(numbers)}")
     print(f"The average of the numbers is {sum(numbers) / len(numbers):.1f}")
+
+    username = input("What is your username? ")
+    if username in usernames:
+        print("Access granted")
+    else:
+        print("Access denied")
 
 
 main()
