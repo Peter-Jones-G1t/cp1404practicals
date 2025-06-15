@@ -1,6 +1,6 @@
 """
 CP1404/CP5632 Practical
-Starter code for cumulative total income program
+Code for cumulative total income program
 """
 
 
@@ -13,12 +13,17 @@ def main():
         income = float(input(f"Enter income for month {month}: "))
         incomes.append(income)
 
+    print_report(incomes)
+
+
+def print_report(incomes):
+    """Print formated income report"""
     print("\nIncome Report\n-------------")
     total = 0
-    for month in range(1, number_of_months + 1):
-        income = incomes[month - 1]
+    # use enumerate to get both the month number (starting at 1) and the income for that month
+    for month, income in enumerate(incomes, start=1):
         total += income
-        print("Month {:2} - Income: ${:10.2f} Total: ${:10.2f}".format(month, income, total))
+        print(f"Month {month:2} - Income: ${income:10.2f} Total: ${total:10.2f}")
 
 
 main()
