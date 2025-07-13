@@ -14,5 +14,11 @@ def main():
     print(f"Car has fuel: {my_car.fuel}")
     print(my_car)
 
+    limo = Car(100)
+    limo.add_fuel(20)
+    print(f"Limo has fuel: {limo.fuel}")
+    print(f"Limo drove: {limo.drive(115)} Km's")  # check to see how far limo is driving
+    print(limo)
+
 
 main()
