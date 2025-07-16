@@ -1,7 +1,7 @@
 """
 Intermediate exercise
 Estimate: 40 mins
-Actual:
+Actual: 20 mins
 """
 
 
