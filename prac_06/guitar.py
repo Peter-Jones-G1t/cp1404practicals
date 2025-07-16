@@ -1,7 +1,7 @@
 """
 Do-from-scratch exercise - guitar
 Estimate: 50 mins
-Actual:
+Actual: 30 mins
 """
 
 
