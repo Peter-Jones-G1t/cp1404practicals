@@ -4,6 +4,7 @@ Estimate: 130 mins
 Actual:
 """
 from prac_07.project import Project
+from operator import attrgetter
 
 DEFAULT_FILENAME = "projects.txt"
 
@@ -17,13 +18,23 @@ MENU = """- (L)oad projects
 
 
 def main():
+    """Main menu for Project Management Program"""
     print("Welcome to Pythonic Project Management")
     projects = load_projects(DEFAULT_FILENAME)
-    # test code to see the loaded list
-    for project in projects:
-        print(project)
     print(MENU)
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "L":
+            filename = input("Filename to load projects from: ")
+            projects = load_projects(filename)
+        elif choice == "S":
+            filename = input("Filename to save projects to: ")
+            save_projects(projects, filename)
+        elif choice == "D":
+            display_projects(projects)
 
+        print(MENU)
+        choice = input(">>> ").upper()
 
 
 def load_projects(filename):
@@ -47,8 +58,28 @@ def load_projects(filename):
     return projects
 
 
+def save_projects(projects, filename):
+    with open(filename, 'w') as out_file:
+        out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
+        for project in projects:
+            out_file.write(f"{project.name}\t{project.start_date}\t{project.priority}\t{project.cost_estimate:.2f}"
+                           f"\t{project.completion_percentage}\n")
+    print(f"{len(projects)} projects saved to {filename}")
 
 
+def display_projects(projects):
+    incomplete_projects = [project for project in projects if not project.is_complete()]
+    completed_projects = [project for project in projects if project.is_complete()]
+    incomplete_projects.sort(key=attrgetter('priority'))
+    completed_projects.sort(key=attrgetter('priority'))
+
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(f"  {project}")
+
+    print("Completed projects:")
+    for project in completed_projects:
+        print(f"  {project}")
 
 
 main()
