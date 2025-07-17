@@ -32,6 +32,10 @@ def main():
             save_projects(projects, filename)
         elif choice == "D":
             display_projects(projects)
+        elif choice == "A":
+            add_new_project(projects)
+        elif choice == "U":
+            update_project(projects)
 
         print(MENU)
         choice = input(">>> ").upper()
@@ -59,6 +63,7 @@ def load_projects(filename):
 
 
 def save_projects(projects, filename):
+    """Gets a filename then save a list of projects to that file"""
     with open(filename, 'w') as out_file:
         out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
         for project in projects:
@@ -68,6 +73,7 @@ def save_projects(projects, filename):
 
 
 def display_projects(projects):
+    """Displays incomplete and completed projects sorted by priority"""
     incomplete_projects = [project for project in projects if not project.is_complete()]
     completed_projects = [project for project in projects if project.is_complete()]
     incomplete_projects.sort(key=attrgetter('priority'))
@@ -80,6 +86,38 @@ def display_projects(projects):
     print("Completed projects:")
     for project in completed_projects:
         print(f"  {project}")
+
+
+def add_new_project(projects):
+    """Add a new project to memory"""
+    print("Let's add a new project")
+
+    name = input("Name: ").strip()
+    start_date = input("Start date (dd/mm/yyyy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    completion_percentage = int(input("Percent complete: "))
+
+    new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
+    projects.append(new_project)
+
+
+def update_project(projects):
+    """Display list of current projects. Once selected prompt to update the project completion percentage and priority """
+    for index, project in enumerate(projects):
+        print(f"{index} {project}")
+
+    choice = int(input("Project choice: "))
+    project_to_update = projects[choice]
+    print(project_to_update)
+
+    new_percentage = input("New Percentage: ")
+    if new_percentage != "":
+        project_to_update.completion_percentage = int(new_percentage)
+
+    new_priority = input("New Priority: ")
+    if new_priority != "":
+        project_to_update.priority = int(new_priority)
 
 
 main()
