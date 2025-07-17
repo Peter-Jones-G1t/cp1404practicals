@@ -1,7 +1,7 @@
 """
 Do-from-scratch Exercise - Project Management Program
 Estimate: 130 mins
-Actual:
+Actual: 200 mins (ouch)
 """
 from prac_07.project import Project
 from operator import attrgetter
@@ -40,10 +40,11 @@ def main():
         elif choice == "U":
             update_project(projects)
         else:
-            print("BYE")
+            print(MENU)
+            choice = input(">>> ").upper()
 
-        print(MENU)
-        choice = input(">>> ").upper()
+    print("Would you like to save to projects.txt? no, I think not.")
+    print("Thank you for using custom-built project management software.")
 
 
 def load_projects(filename):
@@ -96,12 +97,20 @@ def display_projects(projects):
 def filter_projects(projects):
     """Get date and display projects that start after that date"""
     date_string = input("Show projects that start after date (dd/mm/yy): ")
-    filter_date = datetime.strptime(date_string, "%d/%m/%Y").date()
+    try:
+        filter_date = datetime.strptime(date_string, "%d/%m/%Y").date()
+    except ValueError:
+        print("Invalid date format.")
+        return
 
     filtered_projects = [project for project in projects if project.get_start_date() >= filter_date]
     filtered_projects.sort(key=Project.get_start_date)
-    for project in filtered_projects:
-        print(f"  {project}")
+
+    if not filtered_projects:
+        print("No projects start after that date.")
+    else:
+        for project in filtered_projects:
+            print(f"  {project}")
 
 
 def add_new_project(projects):
@@ -110,9 +119,17 @@ def add_new_project(projects):
 
     name = input("Name: ").strip()
     start_date = input("Start date (dd/mm/yyyy): ")
-    priority = int(input("Priority: "))
-    cost_estimate = float(input("Cost estimate: $"))
-    completion_percentage = int(input("Percent complete: "))
+    try:
+        datetime.strptime(start_date, "%d/%m/%Y")
+        priority = int(input("Priority: "))
+        cost_estimate = float(input("Cost estimate: $"))
+        completion_percentage = int(input("Percent complete: "))
+        if not 0 <= completion_percentage <= 100:
+            print("Completion must be between 0 and 100.")
+            return
+    except ValueError:
+        print("Invalid input.")
+        return
 
     new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
     projects.append(new_project)
@@ -122,18 +139,28 @@ def update_project(projects):
     """Display list of current projects. Once selected prompt to update the project completion percentage and priority"""
     for index, project in enumerate(projects):
         print(f"{index} {project}")
+    try:
+        choice = int(input("Project choice: "))
+        project_to_update = projects[choice]
+    except (ValueError, IndexError):
+        print("Invalid project selection.")
+        return
 
-    choice = int(input("Project choice: "))
-    project_to_update = projects[choice]
     print(project_to_update)
 
     new_percentage = input("New Percentage: ")
     if new_percentage != "":
-        project_to_update.completion_percentage = int(new_percentage)
+        try:
+            project_to_update.completion_percentage = int(new_percentage)
+        except ValueError:
+            print("Skipped.")
 
     new_priority = input("New Priority: ")
     if new_priority != "":
-        project_to_update.priority = int(new_priority)
+        try:
+            project_to_update.priority = int(new_priority)
+        except ValueError:
+            print("Skipped.")
 
 
 main()
