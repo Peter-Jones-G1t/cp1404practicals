@@ -5,6 +5,7 @@ Actual:
 """
 from prac_07.project import Project
 from operator import attrgetter
+from datetime import datetime
 
 DEFAULT_FILENAME = "projects.txt"
 
@@ -32,10 +33,14 @@ def main():
             save_projects(projects, filename)
         elif choice == "D":
             display_projects(projects)
+        elif choice == "F":
+            filter_projects(projects)
         elif choice == "A":
             add_new_project(projects)
         elif choice == "U":
             update_project(projects)
+        else:
+            print("BYE")
 
         print(MENU)
         choice = input(">>> ").upper()
@@ -88,6 +93,17 @@ def display_projects(projects):
         print(f"  {project}")
 
 
+def filter_projects(projects):
+    """Get date and display projects that start after that date"""
+    date_string = input("Show projects that start after date (dd/mm/yy): ")
+    filter_date = datetime.strptime(date_string, "%d/%m/%Y").date()
+
+    filtered_projects = [project for project in projects if project.get_start_date() >= filter_date]
+    filtered_projects.sort(key=Project.get_start_date)
+    for project in filtered_projects:
+        print(f"  {project}")
+
+
 def add_new_project(projects):
     """Add a new project to memory"""
     print("Let's add a new project")
@@ -103,7 +119,7 @@ def add_new_project(projects):
 
 
 def update_project(projects):
-    """Display list of current projects. Once selected prompt to update the project completion percentage and priority """
+    """Display list of current projects. Once selected prompt to update the project completion percentage and priority"""
     for index, project in enumerate(projects):
         print(f"{index} {project}")
 

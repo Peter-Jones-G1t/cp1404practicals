@@ -1,7 +1,7 @@
 """
 Class file for Project Management Program
 """
-
+from datetime import datetime
 
 class Project:
 
@@ -13,7 +13,12 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def is_complete(self):
+        """Check if a project is complete"""
         return self.completion_percentage == 100
+
+    def get_start_date(self):
+        """Get a projects start date"""
+        return datetime.strptime(self.start_date, "%d/%m/%Y").date()
 
     def __str__(self):
         return (f"{self.name}, start: {self.start_date}, priority {self.priority}, estimate: ${self.cost_estimate:.2f},"
