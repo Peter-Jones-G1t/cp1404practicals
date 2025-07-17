@@ -1,13 +1,13 @@
-# [CP1404 Practicals](https://github.com/CP1404/Practicals)
 ___
-## What is this [project?](https://github.com/Peter-Jones-G1t/cp1404practicals)
-This project is a collection of programs completed and submitted as per
+# What is this project?
+This [project](https://github.com/Peter-Jones-G1t/cp1404practicals)
+is a collection of programs completed and submitted as per
 the instructions of this subject [(CP1404).](https://github.com/CP1404/Practicals)
 It aims to show a timeline of my journey to learn concepts, [patterns](https://github.com/CP1404/Starter/wiki/Programming-Patterns), 
 and [best practice](https://github.com/CP1404/Starter/wiki/Style-Guide#best-practice-suggestions)
 when programming in [Python.](https://www.python.org/about/)
 ---
-## About [me](https://github.com/Peter-Jones-G1t)
+## About me
 My name is [Peter Jones](https://github.com/Peter-Jones-G1t), I am 21 years of age currently living in Townsville and
 studying a bachelor of IT at James Cook University.
 ___
