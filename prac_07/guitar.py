@@ -1,7 +1,7 @@
 """
 Intermediate exercise - guitar
 Estimate: 50 mins
-Actual:
+Actual: 70 mins
 """
 
 
@@ -13,7 +13,8 @@ class Guitar:
         self.cost = cost
 
     def __str__(self):
-        return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
+        vintage_string = " (vintage)" if self.is_vintage() else ""
+        return f"{self.name} ({self.year}) : ${self.cost:,.2f}{vintage_string}"
 
     def __lt__(self, other):
         return self.year < other.year
