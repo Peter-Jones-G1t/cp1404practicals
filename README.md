@@ -21,5 +21,4 @@ away the use of bad practices like magic numbers!)
 * Understanding imperative mood has been invaluable for avoiding things like bad naming,
 bad commit messages etc. Nearly every single time I go to start a commit,
 name a function, write a comment or docstring there is a little voice
-constantly reminding myself of the ***~imperative mood~***
-
+constantly reminding myself of the ***imperative mood***
